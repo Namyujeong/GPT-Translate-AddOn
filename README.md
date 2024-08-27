@@ -22,7 +22,9 @@ S- upports various languages.
 - Replace `YOUR_API_KEY` in the script with your personal OpenAI API key.
 
 2. Supported Languages:
+- You can customize or extend this list by modifying the languageMap object in the script.
 - The script includes a languageMap that supports the following languages by default:
+  
 ```
 EN: English
 KR: Korean
@@ -37,7 +39,6 @@ ZH-TW: Chinese (Traditional)
 TL: Tagalog
 VI: Vietnamese
 ```
-You can customize or extend this list by modifying the languageMap object in the script.
 
 3. Customize UI:
 - Modify the menu options in the script to fit your specific needs. The UI includes options to activate or deactivate the GPT Translate feature through the Google Sheets menu.
