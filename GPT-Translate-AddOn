@@ -1,0 +1,72 @@
+function onOpen() {
+  var ui = SpreadsheetApp.getUi();
+  ui.createMenu('GPT Translate')
+      .addItem('Activate GPT Translate', 'activateGptTranslate')
+      .addItem('Deactivate GPT Translate', 'deactivateGptTranslate')
+      .addToUi();
+}
+
+function activateGptTranslate() {
+  PropertiesService.getDocumentProperties().setProperty("gptTranslateActive", "true");
+  SpreadsheetApp.getUi().alert('GPT Translate has been activated.');
+}
+
+function deactivateGptTranslate() {
+  PropertiesService.getDocumentProperties().setProperty("gptTranslateActive", "false");
+  SpreadsheetApp.getUi().alert('GPT Translate has been deactivated.');
+}
+
+function gpt_translation(text, targetLanguageCode) {
+  var active = PropertiesService.getDocumentProperties().getProperty("gptTranslateActive");
+  if (active !== "true") {
+    return "GPT Translate is not activated.";
+  }
+
+  if (!targetLanguageCode || typeof targetLanguageCode !== 'string') {
+    return "Invalid language code";
+  }
+
+  var apiKey = 'YOUR-API-KEY'; // Insert your OpenAI API Key
+  var url = 'https://api.openai.com/v1/chat/completions';
+
+  var languageMap = {
+    'EN': 'English',
+    'KR': 'Korean',
+    'PT': 'Portuguese',
+    'JA': 'Japanese',
+    'ES': 'Spanish',
+    'TH': 'Thai',
+    'ID': 'Indonesian',
+    'RU': 'Russian',
+    'ZH-CN': 'Chinese (Simplified)',
+    'ZH-TW': 'Chinese (Traditional)',
+    'TL': 'Tagalog',
+    'VI': 'Vietnamese'
+  };
+
+  var targetLanguage = languageMap[targetLanguageCode.toUpperCase()];
+
+  if (!targetLanguage) {
+    return "Invalid language code";
+  }
+
+  var prompt = `Translate the following text to ${targetLanguage}: ${text}`;
+  
+  var options = {
+    'method': 'post',
+    'contentType': 'application/json',
+    'headers': {
+      'Authorization': 'Bearer ' + apiKey
+    },
+    'payload': JSON.stringify({
+      'model': 'gpt-4',
+      'messages': [{'role': 'user', 'content': prompt}],
+      'max_tokens': 500
+    })
+  };
+  
+  var response = UrlFetchApp.fetch(url, options);
+  var json = JSON.parse(response.getContentText());
+  
+  return json.choices[0].message.content.trim();
+}
