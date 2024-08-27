@@ -42,3 +42,9 @@ VI: Vietnamese
 
 3. Customize UI:
 - Modify the menu options in the script to fit your specific needs. The UI includes options to activate or deactivate the GPT Translate feature through the Google Sheets menu.
+
+# License
+This project is licensed under the MIT License.
+
+# Contributions
+Contributions are welcome! Please fork this repository, make your changes, and submit a pull request.
