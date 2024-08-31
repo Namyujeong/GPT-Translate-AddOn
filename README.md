@@ -11,10 +11,16 @@ S- upports various languages.
 - Follow the detailed installation and publication guide here: [Google Workspace Marketplace How-To](https://developers.google.com/workspace/marketplace/how-to-publish).
 - Open Google Sheets, go to "Extensions > GPT Translate" to activate.
 
+<img width="738" alt="Screen Shot 2024-08-28 at 1 55 14 AM" src="https://github.com/user-attachments/assets/1c00dc51-9394-4615-ba6e-5309412c108d">
+
+
 ## Usage in Google Sheets
 - Use the function `=gpt_translation("Your text", "LANGUAGE_CODE")` to translate text.
 - Example: `=gpt_translation(A1, "KR")` translates the text in cell A1 to Korean.
 - Replace `LANGUAGE_CODE` with the appropriate code (e.g., `"EN"` for English, `"KR"` for Korean).
+
+<img width="359" alt="image (1)" src="https://github.com/user-attachments/assets/b15cfff5-010a-4ea6-9cd8-41cdbb933bc8">
+
 
 ## Customization
 
